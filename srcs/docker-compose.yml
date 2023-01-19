@@ -1,15 +1,49 @@
 version: '3'
 
+networks:
+  inception:
+    name: inception
+    driver: bridge
+
 services:
+  mariadb:
+    build: requirements/mariadb
+    volumes:
+      - mariadb_vol:/var/lib/mysql
+    container_name: mariadb
+    restart: unless-stopped
+    expose:
+      - "3306"
+    networks:
+      - inception
+    env_file: .env
+
   nginx:
-    build: /requirement/nginx
+    build: requirements/nginx
+    volumes:
+      - wordpress_vol:/var/www/wordpress
     container_name: nginx
     restart: on-failure
     ports:
-      - 443:443
-    volumes:
-      - /home/sleleu/data/site:/var/www/html
+      - "443:443"
     networks:
       - inception
-    dockerfile: Dockerfile
     env_file: .env
+
+  wordpress:
+    build: requirements/wordpress
+    volumes:
+      - wordpress_vol:/var/www/wordpress
+    container_name: wordpress
+    restart: on-failure
+    expose:
+      - "9000"
+    depends_on:
+      - mariadb
+    networks:
+      - inception
+    env_file: .env
+
+volumes:
+  mariadb_vol:
+  wordpress_vol:
