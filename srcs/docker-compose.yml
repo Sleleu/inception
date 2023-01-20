@@ -11,19 +11,24 @@ services:
     volumes:
       - mariadb_vol:/var/lib/mysql
     container_name: mariadb
-    restart: unless-stopped
+    restart: always
     expose:
       - "3306"
     networks:
       - inception
     env_file: .env
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
   nginx:
     build: requirements/nginx
     volumes:
       - wordpress_vol:/var/www/wordpress
     container_name: nginx
-    restart: on-failure
+    restart: always
     ports:
       - "443:443"
     networks:
@@ -35,7 +40,7 @@ services:
     volumes:
       - wordpress_vol:/var/www/wordpress
     container_name: wordpress
-    restart: on-failure
+    restart: always
     expose:
       - "9000"
     depends_on:
@@ -43,6 +48,11 @@ services:
     networks:
       - inception
     env_file: .env
+    environment: 
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_HOSTNAME=${MYSQL_HOSTNAME}
 
 volumes:
   mariadb_vol:
