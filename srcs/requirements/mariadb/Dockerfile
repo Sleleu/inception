@@ -6,8 +6,8 @@ RUN  apt update -y && apt upgrade -y \
 EXPOSE 3306
 
 COPY conf/mariadb.conf /etc/mysql/mariadb.conf.d/50-server.cnf
-COPY conf/script.sh /script.sh
+COPY conf/database.sql /database.sql
 
-RUN chmod a+x /script.sh
+RUN service mysql start && mysql < /database.sql && rm -rfd /database.sql
 
-ENTRYPOINT ["/script.sh"]
+CMD ["/usr/bin/mysqld_safe"]

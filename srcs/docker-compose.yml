@@ -15,17 +15,20 @@ services:
     networks:
       - inception
     env_file: .env
-    environment:
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    # environment:
+    #   - MYSQL_DATABASE=${MYSQL_DATABASE}
+    #   - MYSQL_USER=${MYSQL_USER}
+    #   - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    #   - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
   nginx:
     build: requirements/nginx
     volumes:
       - wordpress:/var/www/wordpress
     container_name: nginx
+    depends_on:
+      - mariadb
+      - wordpress
     restart: always
     ports:
       - "443:443"
@@ -46,12 +49,24 @@ services:
     networks:
       - inception
     env_file: .env
-    environment: 
-      - MYSQL_HOST=${MYSQL_HOST}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    # environment: 
+    #   - MYSQL_HOST=${MYSQL_HOST}
+    #   - MYSQL_DATABASE=${MYSQL_DATABASE}
+    #   - MYSQL_USER=${MYSQL_USER}
+    #   - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+
 
 volumes:
-  mariadb:
   wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/sleleu/data/wordpress
+
+  mariadb:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/sleleu/data/mariadb
