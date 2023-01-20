@@ -22,16 +22,16 @@
 
 // ** Réglages MySQL - Votre hébergeur doit vous fournir ces informations. ** //
 /** Nom de la base de données de WordPress. */
-define( 'DB_NAME', 'votre_nom_de_bdd' );
+define( 'DB_NAME', ${MYSQL_DATABASE} );
 
 /** Utilisateur de la base de données MySQL. */
-define( 'DB_USER', 'votre_utilisateur_de_bdd' );
+define( 'DB_USER', ${MYSQL_USER} );
 
 /** Mot de passe de la base de données MySQL. */
-define( 'DB_PASSWORD', 'votre_mdp_de_bdd' );
+define( 'DB_PASSWORD', ${MYSQL_PASSWORD} );
 
 /** Adresse de l’hébergement MySQL. */
-define( 'DB_HOST', 'localhost' );
+define( 'DB_HOST', ${MYSQL_HOST} );
 
 /** Jeu de caractères à utiliser par la base de données lors de la création des tables. */
 define( 'DB_CHARSET', 'utf8' );
@@ -53,14 +53,14 @@ define( 'DB_COLLATE', '' );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         'mettez une phrase unique ici' );
-define( 'SECURE_AUTH_KEY',  'mettez une phrase unique ici' );
-define( 'LOGGED_IN_KEY',    'mettez une phrase unique ici' );
-define( 'NONCE_KEY',        'mettez une phrase unique ici' );
-define( 'AUTH_SALT',        'mettez une phrase unique ici' );
-define( 'SECURE_AUTH_SALT', 'mettez une phrase unique ici' );
-define( 'LOGGED_IN_SALT',   'mettez une phrase unique ici' );
-define( 'NONCE_SALT',       'mettez une phrase unique ici' );
+  define('AUTH_KEY',         ${AUTH_KEY});
+  define('SECURE_AUTH_KEY',  ${SECURE_AUTH_KEY});
+  define('LOGGED_IN_KEY',    ${LOGGED_IN_KEY});
+  define('NONCE_KEY',        ${NONCE_KEY});
+  define('AUTH_SALT',        ${AUTH_SALT});
+  define('SECURE_AUTH_SALT', ${SECURE_AUTH_SALT});
+  define('LOGGED_IN_SALT',   ${LOGGED_IN_SALT});
+  define('NONCE_SALT',       ${NONCE_SALT});
 /**#@-*/
 
 /**

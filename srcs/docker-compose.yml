@@ -2,14 +2,12 @@ version: '3'
 
 networks:
   inception:
-    name: inception
-    driver: bridge
 
 services:
   mariadb:
     build: requirements/mariadb
     volumes:
-      - mariadb_vol:/var/lib/mysql
+      - mariadb:/var/lib/mysql
     container_name: mariadb
     restart: always
     expose:
@@ -26,7 +24,7 @@ services:
   nginx:
     build: requirements/nginx
     volumes:
-      - wordpress_vol:/var/www/wordpress
+      - wordpress:/var/www/wordpress
     container_name: nginx
     restart: always
     ports:
@@ -38,7 +36,7 @@ services:
   wordpress:
     build: requirements/wordpress
     volumes:
-      - wordpress_vol:/var/www/wordpress
+      - wordpress:/var/www/wordpress
     container_name: wordpress
     restart: always
     expose:
@@ -49,11 +47,11 @@ services:
       - inception
     env_file: .env
     environment: 
+      - MYSQL_HOST=${MYSQL_HOST}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_HOSTNAME=${MYSQL_HOSTNAME}
 
 volumes:
-  mariadb_vol:
-  wordpress_vol:
+  mariadb:
+  wordpress:
