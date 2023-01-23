@@ -31,7 +31,7 @@ define( 'DB_USER', 'sleleu' );
 define( 'DB_PASSWORD', 'abcd' );
 
 /** Adresse de l’hébergement MySQL. */
-define( 'DB_HOST', 'mariadb:3306' );
+define( 'DB_HOST', 'mariadb' );
 
 /** Jeu de caractères à utiliser par la base de données lors de la création des tables. */
 define( 'DB_CHARSET', 'utf8' );
@@ -86,7 +86,7 @@ $table_prefix = 'wp_';
  *
  * @link https://fr.wordpress.org/support/article/debugging-in-wordpress/
  */
-define( 'WP_DEBUG', true );
+define( 'WP_DEBUG', false );
 
 /* C’est tout, ne touchez pas à ce qui suit ! Bonne publication. */
 
@@ -96,5 +96,3 @@ if ( ! defined( 'ABSPATH' ) )
 
 /** Réglage des variables de WordPress et de ses fichiers inclus. */
 require_once( ABSPATH . 'wp-settings.php' );
-
-define('WP_ALLOW_REPAIR', true);

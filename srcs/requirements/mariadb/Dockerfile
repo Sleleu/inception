@@ -4,11 +4,18 @@ RUN  apt update -y && apt upgrade -y \
 && apt install mariadb-server -y \
 && apt install mariadb-client -y
 
+RUN mkdir -p /run/mysqld /var/lib/mysql \
+&& chown -R mysql:mysql /run/mysqld /var/lib/mysql \
+&& chmod 777 /run/mysqld /var/lib/mysql
+
 COPY conf/mariadb.conf /etc/mysql/mariadb.conf.d/50-server.cnf
 COPY conf/database.sql /database.sql
 
-RUN service mysql start && mysql < /database.sql && rm -rfd /database.sql
+RUN chmod a+x /database.sql
+RUN mysql_install_db && service mysql start && sleep 10 \
+&& mysql -uroot < /database.sql \
+&& mysqladmin -uroot shutdown
 
 EXPOSE 3306
 
-CMD ["/usr/bin/mysqld_safe"]
+CMD ["mysqld"]

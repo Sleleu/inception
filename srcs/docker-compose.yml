@@ -16,11 +16,6 @@ services:
     networks:
       - inception
     env_file: .env
-    # environment:
-    #   - MYSQL_DATABASE=${MYSQL_DATABASE}
-    #   - MYSQL_USER=${MYSQL_USER}
-    #   - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-    #   - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
   nginx:
     build: requirements/nginx
@@ -46,6 +41,8 @@ services:
     expose:
       - "9000"
     depends_on:
+      - mariadb
+    links:
       - mariadb
     networks:
       - inception
