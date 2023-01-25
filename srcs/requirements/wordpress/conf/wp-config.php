@@ -31,7 +31,7 @@ define( 'DB_USER', 'sleleu' );
 define( 'DB_PASSWORD', 'abcd' );
 
 /** Adresse de l’hébergement MySQL. */
-define( 'DB_HOST', 'mariadb' );
+define( 'DB_HOST', 'mariadb:3306' );
 
 /** Jeu de caractères à utiliser par la base de données lors de la création des tables. */
 define( 'DB_CHARSET', 'utf8' );

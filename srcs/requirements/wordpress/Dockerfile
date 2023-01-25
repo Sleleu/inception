@@ -11,23 +11,23 @@ RUN apt update -y && apt upgrade -y \
     wget \
     curl \
     bash \
-&& wget https://fr.wordpress.org/wordpress-6.1.1-fr_FR.tar.gz -P /var/www \
-&& cd /var/www \
+&& wget https://fr.wordpress.org/wordpress-6.1.1-fr_FR.tar.gz -P /var/www/html \
+&& cd /var/www/html \
 && tar -xzf wordpress-6.1.1-fr_FR.tar.gz \
 && rm wordpress-6.1.1-fr_FR.tar.gz \
-&& chown -R root:root /var/www/wordpress
+&& chown -R root:root /var/www/html/wordpress
 
 COPY /conf/www.conf /etc/php/7.3/fpm/pool.d/
-COPY /conf/wp-config.php /var/www/wordpress/wp-config.php
-COPY /conf/script.sh /var/www
+COPY /conf/wp-config.php /var/www/html/wordpress/wp-config.php
+COPY /conf/script.sh /
 
-RUN chmod a+x /var/www/script.sh
+RUN chmod a+x /script.sh
 # tester si ca creer bien le fichier dans le container et qu'il le considere en prio
 # sinon rm /var/www/wordpress/wp-config-sample.php avant
 
 EXPOSE 9000
 
 
-ENTRYPOINT ["/var/www/script.sh"]
+ENTRYPOINT ["/script.sh"]
 
 CMD ["/usr/sbin/php-fpm7.3", "--nodaemonize"]
