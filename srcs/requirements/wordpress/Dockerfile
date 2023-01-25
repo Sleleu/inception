@@ -19,14 +19,11 @@ RUN apt update -y && apt upgrade -y \
 
 COPY /conf/www.conf /etc/php/7.3/fpm/pool.d/
 COPY /conf/wp-config.php /var/www/html/wordpress/wp-config.php
-COPY /conf/script.sh /
+COPY /conf/script.sh /script.sh
 
 RUN chmod a+x /script.sh
-# tester si ca creer bien le fichier dans le container et qu'il le considere en prio
-# sinon rm /var/www/wordpress/wp-config-sample.php avant
 
 EXPOSE 9000
-
 
 ENTRYPOINT ["/script.sh"]
 

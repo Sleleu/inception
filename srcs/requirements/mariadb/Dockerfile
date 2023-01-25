@@ -4,10 +4,6 @@ RUN  apt update -y && apt upgrade -y \
 && apt install mariadb-server -y \
 && apt install mariadb-client -y
 
-RUN mkdir -p /run/mysqld /var/lib/mysql \
-&& chown -R mysql:mysql /run/mysqld /var/lib/mysql \
-&& chmod 777 /run/mysqld /var/lib/mysql
-
 COPY conf/mariadb.conf /etc/mysql/mariadb.conf.d/50-server.cnf
 COPY conf/database.sql /database.sql
 

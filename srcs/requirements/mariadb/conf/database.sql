@@ -4,3 +4,4 @@ CREATE DATABASE IF NOT EXISTS db_wordpress;
 CREATE USER IF NOT EXISTS 'sleleu'@'%' IDENTIFIED BY 'abcd';
 GRANT ALL PRIVILEGES ON db_wordpress.* TO 'sleleu'@'%';
 FLUSH PRIVILEGES;
+ALTER USER 'root'@'%' IDENTIFIED BY 'abcd';
