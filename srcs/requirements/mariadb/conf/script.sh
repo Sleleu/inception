@@ -1,10 +1,15 @@
-#!/bin/sh
+#!/bin/bash
 
-mysql -e "GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY 'abcd';"
-mysql -e "FLUSH PRIVILEGES;"
-mysql -e "CREATE DATABASE IF NOT EXISTS db_wordpress;"
-mysql -e "CREATE USER IF NOT EXISTS 'sleleu'@'%' IDENTIFIED BY 'abcd';"
-mysql -e "GRANT ALL PRIVILEGES ON db_wordpress.* TO 'sleleu'@'%';"
-mysql -e "FLUSH PRIVILEGES;"
+if [ ! -d /var/lib/mysql/db_wordpress ]
+then
+
+mysql_install_db
+service mysql start
+
+mysql -uroot < /database.sql
+
+service mysql stop
+
+fi
 
 exec "$@"

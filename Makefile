@@ -4,7 +4,7 @@ all:
 	docker compose -f $(COMPOSE_PATH) up
 
 down:
-	docker-compose -f $(COMPOSE_PATH) down
+	docker compose -f $(COMPOSE_PATH) down
 
 clean:
 	docker compose -f $(COMPOSE_PATH) down

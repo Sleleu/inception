@@ -13,10 +13,9 @@ services:
     restart: always
     ports:
       - "3306:3306"
-    environment:
-      - 'MYSQL_USER=${MYSQL_USER}'
     networks:
       - inception
+    env_file: .env
 
   nginx:
     build: requirements/nginx
@@ -30,6 +29,7 @@ services:
       - "443:443"
     networks:
       - inception
+    env_file: .env
 
   wordpress:
     build: requirements/wordpress
@@ -43,6 +43,7 @@ services:
       - mariadb
     networks:
       - inception
+    env_file: .env
 
 
 volumes:
@@ -50,7 +51,7 @@ volumes:
     name: wordpress
     driver: local
     driver_opts:
-      type: none
+      type: bind
       o: bind
       device: /home/sleleu/data/wordpress
 
@@ -58,6 +59,6 @@ volumes:
     name: mariadb
     driver: local
     driver_opts:
-      type: none
+      type: bind
       o: bind
       device: /home/sleleu/data/mariadb

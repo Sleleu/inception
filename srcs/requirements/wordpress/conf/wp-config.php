@@ -22,16 +22,16 @@
 
 // ** Réglages MySQL - Votre hébergeur doit vous fournir ces informations. ** //
 /** Nom de la base de données de WordPress. */
-define( 'DB_NAME', 'db_wordpress' );
+define( 'DB_NAME', getenv('MYSQL_DATABASE') );
 
 /** Utilisateur de la base de données MySQL. */
-define( 'DB_USER', 'sleleu' );
+define( 'DB_USER', getenv('MYSQL_USER') );
 
 /** Mot de passe de la base de données MySQL. */
-define( 'DB_PASSWORD', 'abcd' );
+define( 'DB_PASSWORD', getenv('MYSQL_PASSWORD') );
 
 /** Adresse de l’hébergement MySQL. */
-define( 'DB_HOST', 'mariadb:3306' );
+define( 'DB_HOST', getenv('MYSQL_HOST') );
 
 /** Jeu de caractères à utiliser par la base de données lors de la création des tables. */
 define( 'DB_CHARSET', 'utf8' );
@@ -53,14 +53,14 @@ define( 'DB_COLLATE', '' );
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         'Fqj;txhe-4U&U`1Uj5>(Bse&:Qc-d<#Y0*)bn=2 G.I,fZ)|V[&8|vh}S3tVF&];');
-define('SECURE_AUTH_KEY',  'vxvuqo;CiSE-]|q#ObsL2wN2f7e|:[;^&(e^KspK;tVij @Q?xdv6sp?_{[[%nv$');
-define('LOGGED_IN_KEY',    '{Z&(z6k:571c*CAZeyA]RDBl:6&saH2brZDv%RrK3/Sx`z-OmEgA584{p+(/;@cU');
-define('NONCE_KEY',        'VMmUrqp@GN^!|?Cw9{V;cMCYgLc(#GDG+ncwYp/-?e:uVt@+#^XSMd&0}nncQkE<');
-define('AUTH_SALT',        'Q%z_]/PuW4qq/NB(0x8_q_FUw<U ;y4M@+mwpKdf]$.4UOWFZ.pvnj/{*`9on/|m');
-define('SECURE_AUTH_SALT', '9_ TJ3h@<^O:lG{(M{vhs%o#=B809W-$bLLT?J?n%vLCoP-x1dXs{|-S0zFH#ln-');
-define('LOGGED_IN_SALT',   'jf;dih8[E,Lb$4QngJnwb*`^chWE*$7-FE;h89FvPs+MPO|;ahCNCA~ii&S+Z+C_');
-define('NONCE_SALT',       'Lq AUf:!O;9iqeH^]*+l_zz<J:Tsw)`*GnMd7(ah,Oj!#RuoF!|]v|w&|CKYh4DO');
+define('AUTH_KEY',         getenv('AUTH_KEY'));
+define('SECURE_AUTH_KEY',  getenv('SECURE_AUTH_KEY'));
+define('LOGGED_IN_KEY',    getenv('LOGGED_IN_KEY'));
+define('NONCE_KEY',        getenv('NONCE_KEY'));
+define('AUTH_SALT',        getenv('AUTH_SALT'));
+define('SECURE_AUTH_SALT', getenv('SECURE_AUTH_SALT'));
+define('LOGGED_IN_SALT',   getenv('LOGGED_IN_SALT'));
+define('NONCE_SALT',       getenv('NONCE_SALT'));
 /**#@-*/
 
 /**

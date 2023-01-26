@@ -14,8 +14,7 @@ RUN apt update -y && apt upgrade -y \
 && wget https://fr.wordpress.org/wordpress-6.1.1-fr_FR.tar.gz -P /var/www/html \
 && cd /var/www/html \
 && tar -xzf wordpress-6.1.1-fr_FR.tar.gz \
-&& rm wordpress-6.1.1-fr_FR.tar.gz \
-&& chown -R root:root /var/www/html/wordpress
+&& rm wordpress-6.1.1-fr_FR.tar.gz
 
 COPY /conf/www.conf /etc/php/7.3/fpm/pool.d/
 COPY /conf/wp-config.php /var/www/html/wordpress/wp-config.php
