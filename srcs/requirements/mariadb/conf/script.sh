@@ -1,15 +1,9 @@
 #!/bin/bash
 
-if [ ! -d /var/lib/mysql/db_wordpress ]
-then
+envsubst < /database.sql > /database_new.sql
 
-mysql_install_db
-service mysql start
+mysqld --user=root --bootstrap < database_new.sql
 
-mysql -uroot < /database.sql
+rm -f database_new.sql && rm -f database.sql
 
-service mysql stop
-
-fi
-
-exec "$@"
+exec mysqld --user=root $@
