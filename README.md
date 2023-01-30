@@ -21,7 +21,32 @@ Here is an example diagram of the final result provided by the subject :
 ## Installation
 
 ```shell
+git clone git@github.com:Sleleu/inception.git
+cd inception
+make
+```
+It's possible to change the identifiers and characteristics of the site from a .env file, established by default with random identifiers for this project
 
+## Usefull commands
+
+- Basic commands
+
+```shell
+docker compose up -d # Build all containers with docker compose, and launch services in background
+docker compose down # Desactivate containers
+docker build -t <name> <path> # Build a single container with a defined name and path
+docker exec -it <name> bash # To navigate in the started container
+docker stop <ID> # Stop a container
+docker rm <ID> # Remove a container
+docker ps -a # See containers
+docker volume ls # See volumes
+```
+
+- suppression commands
+
+```shell
+docker system prune -a # Remove containers, networks, images
+docker volume rm $(docker volume ls -q) # Remove volumes
 ```
 
 ## Ressources :
