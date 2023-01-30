@@ -3,6 +3,27 @@ A project to get familiar with docker
 
 ## Subject
 
+This project consists in building an architecture composed of containers and volumes in order to build a wordpress site using mariadb as a database, and nginx as a web server.
+
+The following installations must be performed :
+- A Docker container that contains NGINX with TLSv1.2 or TLSv1.3 only.
+- A Docker container that contains WordPress + php-fpm (it must be installed and
+configured) only without nginx.
+- A Docker container that contains MariaDB only without nginx.
+- A volume that contains your WordPress database.
+- A second volume that contains your WordPress website files.
+- A docker-network that establishes the connection between your containers.
+
+Here is an example diagram of the final result provided by the subject :
+
+![Screenshot from 2023-01-30 16-59-21](https://user-images.githubusercontent.com/93100775/215528044-cd99af72-77ff-44ed-b1c3-dd0cc73eb55f.png)
+
+## Installation
+
+```shell
+
+```
+
 ## Ressources :
 
 - https://medium.com/swlh/wordpress-deployment-with-nginx-php-fpm-and-mariadb-using-docker-compose-55f59e5c1a
